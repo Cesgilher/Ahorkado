@@ -4,9 +4,9 @@ import java.util.Scanner;
 
 public class Game {
 
-    String gameWord;
-    ArrayList<Integer> guessedChars = new ArrayList<>();
-    ArrayList<Integer> failedChars = new ArrayList<>();
+    String gameWord="carta";
+    ArrayList<Character> guessedChars = new ArrayList<>();
+    ArrayList<Character> failedChars = new ArrayList<>();
     Scanner sc = new Scanner(System.in);
     WordManager wm = new WordManager();
     int level;
@@ -30,36 +30,35 @@ public class Game {
 
     public void CheckChar(char value) {
 
-        for (int i = 0; i < gameWord.length(); i++) {
-            if (gameWord.charAt(i) == value) {
-                guessedChars.add(i);
-            }
+        if (gameWord.contains(String.valueOf(value))){
+            guessedChars.add(value);
+        }else {
+            failedChars.add(value);
         }
-
-
     }
 
     public void ShowGuessedChars(){
         String word = "";
         for (int i = 0; i < gameWord.length(); i++){
-            if (guessedChars.contains(i)){
-                word = word.concat(String.valueOf(gameWord.indexOf(i)));
+            char c = gameWord.charAt(i);
+
+            if (guessedChars.contains(c)){
+                word = word.concat(String.valueOf(c));
             }else {
                 word = word.concat("_");
             }
         }
-        System.out.print(word);
+        System.out.println(word);
 
     }
 
-    //este no se me ocurre como pasarle el parametro value
 
 
     public void gameOver(){
         System.out.println("Has perdido");
     }
 
-    public void Play() {
+    /*public void Play() {
         int Attempts = 0;
         int option = 0;
         boolean comprobation = true;
@@ -98,7 +97,7 @@ public class Game {
             }
 
         }while(option != 2 || Attempts != 4);
-    }
+    }*/
 
 
 }

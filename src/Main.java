@@ -39,7 +39,11 @@ public class Main {
 
 
         }
-        game.play();
+        game.ShowGuessedChars();
+        game.CheckChar('a');
+        game.CheckChar('w');
+        game.ShowGuessedChars();
+
 
 
 
