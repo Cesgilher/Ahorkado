@@ -1,5 +1,5 @@
 public class Word {
-
+    private String value ;
 
     public Word (String value){
         this.value= value;
@@ -12,7 +12,7 @@ public class Word {
         this.value = value;
     }
 
-    private String value ;
+
 
 
 
