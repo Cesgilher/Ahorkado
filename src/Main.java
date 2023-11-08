@@ -36,8 +36,8 @@ public class Main {
 
         }catch(java.util.InputMismatchException e){
             System.out.println("Error: Ingresa un número válido.");
-            sc.nextLine();
-            gameOption = -1;
+
+
         }
         game.play();
 
