@@ -3,22 +3,38 @@ import java.util.Scanner;
 
 
 public class Game {
-
-    String gameWord="carta";
+    String gameWord;
     ArrayList<Character> guessedChars = new ArrayList<>();
     ArrayList<Character> failedChars = new ArrayList<>();
     Scanner sc = new Scanner(System.in);
     WordManager wm = new WordManager();
     int level;
+    int attempts;
+
+
+
 
     public Game(){
-        this.level = 1;
+        this.level = 0;
     }
     public Game(int level ){
         this.level = level;
     }
 
+    private void GetGameWord() {
 
+        if (level == 1){
+            gameWord = wm.GetRandomWord(4);
+        }
+        else if (level == 2) {
+            gameWord = wm.GetRandomWord(7);
+        }
+        else if (level == 3){
+            gameWord = wm.GetRandomWord(10);
+
+        }
+
+    }
 
     public void ShowWord(){
         System.out.print("La palabra es: " + gameWord);
@@ -34,6 +50,7 @@ public class Game {
             guessedChars.add(value);
         }else {
             failedChars.add(value);
+            attempts++;
         }
     }
 
@@ -58,13 +75,15 @@ public class Game {
         System.out.println("Has perdido");
     }
 
-    /*public void Play() {
-        int Attempts = 0;
+    public void Play() {
+        level++;
+        attempts = 0;
+        guessedChars.clear();
+        failedChars.clear();
         int option = 0;
         boolean comprobation = true;
         char  value;
-
-        gameWord.add(wm.GetRandomWord(2));
+        GetGameWord();
 
         do{
 
@@ -78,16 +97,13 @@ public class Game {
                     case 1:
                         System.out.println("Introduzca una letra");
                         value = sc.next().charAt(0);
-                        checkCaracter(value);
-                        if (comprobation){
-                            showCharacter();
-                        }else{
-                            Attempts = + 1;
-                        }
+                        CheckChar(value);
+                        ShowGuessedChars();
+
                         break;
                     case 2:
                         gameOver();
-                        showWord(gameWord);
+                        ShowWord();
                         break;
                 }
 
@@ -96,8 +112,10 @@ public class Game {
 
             }
 
-        }while(option != 2 || Attempts != 4);
-    }*/
+        }while(option != 2 || attempts != 4);
+    }
+
+
 
 
 }

@@ -7,6 +7,7 @@ public class WordManager {
     private ArrayList<Word> availableWords = new ArrayList<>();
 
 
+
     public void AddWord(String value) {
         Word word = new Word(value);
 
@@ -26,7 +27,7 @@ public class WordManager {
 
     }
 
-    public Word GetRandomWord(int lenght) {
+    public String GetRandomWord(int lenght) {
         ArrayList<Word> words = new ArrayList<>();
         for (Word w : availableWords) {
             if (w.getValue().length() < lenght) {
@@ -36,7 +37,7 @@ public class WordManager {
         if (!words.isEmpty()) {
             Random random = new Random();
             int randomIndex = random.nextInt(words.size());
-            return words.get(randomIndex);
+            return String.valueOf(words.get(randomIndex));
         } else {
             return null;
         }

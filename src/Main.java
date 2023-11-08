@@ -3,7 +3,11 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Game game = new Game();
-
+        game.wm.AddWord("taza");
+        game.wm.AddWord("reptil");
+        game.wm.AddWord("taladro");
+        game.wm.AddWord("impresionar");
+        game.wm.AddWord("ramo");
         Scanner sc = new Scanner(System.in);
         int level;
 
@@ -17,7 +21,7 @@ public class Main {
             gameOption = sc.nextInt();
 
 
-            switch (gameOption){
+            switch (gameOption) {
 
                 case 1:
                     System.out.println("introducir nivel\n" +
@@ -25,24 +29,22 @@ public class Main {
                             "2- normal\n" +
                             "3- dificil");
                     level = sc.nextInt();
-                    game = new Game(level);
+                    game.level = level;
+
                     break;
                 case 2:
 
                     break;
 
             }
-
-
         }catch(java.util.InputMismatchException e){
             System.out.println("Error: Ingresa un número válido.");
 
 
         }
-        game.ShowGuessedChars();
-        game.CheckChar('a');
-        game.CheckChar('w');
-        game.ShowGuessedChars();
+
+        game.Play();
+
 
 
 
