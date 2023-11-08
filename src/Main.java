@@ -16,14 +16,19 @@ public class Main {
 
             try{
                 gameOption = sc.nextInt();
-                sc.nextInt();
+
 
                 switch (gameOption){
 
                     case 1:
+                        System.out.println("introducir nivel\n" +
+                                "1- facil\n" +
+                                "2- normal\n" +
+                                "3- dificil");
+                        level = sc.nextInt();
 
 
-                        game = new Game(2);
+                        game = new Game(level);
                         break;
                     case 2:
                         game = new Game();
