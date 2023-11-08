@@ -5,32 +5,44 @@ public class Main {
 
         Game game = new Game();
         Scanner sc = new Scanner(System.in);
-        int option;
+        int level;
 
+        int gameOption;
 
         do {
-            System.out.println("1- Jugar\n" +
-                    "2- Salir");
+            System.out.println("1- Elegir Nivel\n" +
+                    "2- Jugar\n" +
+                    "3- Salir");
+
             try{
+                gameOption = sc.nextInt();
+                sc.nextInt();
+
+                switch (gameOption){
+
+                    case 1:
 
 
-                option = sc.nextInt();
-                sc.nextLine();
+                        game.selectLevel();
+                        break;
+                    case 2:
+                        game.play();
+                        break;
+                    case 3:
 
-                if (option == 1){
+                        break;
 
-                    game.gameMenu();
-
-                }else{
-                    System.out.println("Adios");
                 }
-            }catch(java.util.InputMismatchException e) {
+
+
+            }catch(java.util.InputMismatchException e){
                 System.out.println("Error: Ingresa un número válido.");
                 sc.nextLine();
-                option = -1;
+                gameOption = -1;
             }
 
-        }while (option != 0);
+
+        }while(gameOption != 0);
 
     }
 }
