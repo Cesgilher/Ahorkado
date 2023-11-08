@@ -43,23 +43,7 @@ public class WordManager {
 
     }
 
-    public ArrayList<String> GetRandomWordChars(int lenght){
 
-        Word word = GetRandomWord(lenght);
-        if (word != null) {
-            ArrayList<String> charList = new ArrayList<>();
-            String wordValue = word.getValue();
-
-            for (int i = 0; i < wordValue.length(); i++) {
-                charList.add(String.valueOf(wordValue.charAt(i)));
-            }
-
-            return charList;
-        } else {
-            return new ArrayList<>();
-        }
-
-    }
 }
 
 

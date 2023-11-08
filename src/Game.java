@@ -4,7 +4,9 @@ import java.util.Scanner;
 
 public class Game {
 
-    ArrayList<String> gameWord = new ArrayList<>();
+    String gameWord;
+    ArrayList<Integer> guessedChars = new ArrayList<>();
+    ArrayList<Integer> failedChars = new ArrayList<>();
     Scanner sc = new Scanner(System.in);
     WordManager wm = new WordManager();
     int level;
@@ -16,18 +18,59 @@ public class Game {
         this.level = level;
     }
 
-    public void play() {
+
+
+    public void ShowWord(){
+        System.out.print("La palabra es: " + gameWord);
+        /*for (char character : gameWord) {
+            System.out.print(character);
+        }
+        System.out.println();*/
+    }
+
+    public void CheckChar(char value) {
+
+        for (int i = 0; i < gameWord.length(); i++) {
+            if (gameWord.charAt(i) == value) {
+                guessedChars.add(i);
+            }
+        }
+
+
+    }
+
+    public void ShowGuessedChars(){
+        String word = "";
+        for (int i = 0; i < gameWord.length(); i++){
+            if (guessedChars.contains(i)){
+                word = word.concat(String.valueOf(gameWord.indexOf(i)));
+            }else {
+                word = word.concat("_");
+            }
+        }
+        System.out.print(word);
+
+    }
+
+    //este no se me ocurre como pasarle el parametro value
+
+
+    public void gameOver(){
+        System.out.println("Has perdido");
+    }
+
+    public void Play() {
         int Attempts = 0;
         int option = 0;
         boolean comprobation = true;
         char  value;
 
-        gameWord.add(wm.GetRandomWordChars());
+        gameWord.add(wm.GetRandomWord(2));
 
         do{
 
             System.out.println("1- Introducir letra\n" +
-                                "2- Rendirse");
+                    "2- Rendirse");
 
             try {
                 option = sc.nextInt();
@@ -36,16 +79,16 @@ public class Game {
                     case 1:
                         System.out.println("Introduzca una letra");
                         value = sc.next().charAt(0);
-                        checkCaracter(value, gameWord);
-                        if (comprobation == true){
+                        checkCaracter(value);
+                        if (comprobation){
                             showCharacter();
                         }else{
                             Attempts = + 1;
                         }
                         break;
                     case 2:
-                            gameOver();
-                            showWord(gameWord);
+                        gameOver();
+                        showWord(gameWord);
                         break;
                 }
 
@@ -55,27 +98,6 @@ public class Game {
             }
 
         }while(option != 2 || Attempts != 4);
-    }
-
-    public void showWord(ArrayList<String> gameWord){
-        System.out.println("La palabra es: " + gameWord.toString());
-    }
-
-    public void showCharacter(){}
-
-    //este no se me ocurre como pasarle el parametro value
-    public boolean checkCaracter(char value, ArrayList<String> gameWord){
-
-        for (char value : gameWord) {
-            if (gameWord.contains(value)) {
-                return true;
-            }
-        }
-        return false;
-
-    }
-    public void gameOver(){
-        System.out.println("Has perdido");
     }
 
 
