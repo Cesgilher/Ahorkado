@@ -2,8 +2,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        Game game;
 
-        Game game = new Game();
         Scanner sc = new Scanner(System.in);
         int level;
 
@@ -23,10 +23,10 @@ public class Main {
                     case 1:
 
 
-                        game.selectLevel();
+                        game = new Game(2);
                         break;
                     case 2:
-                        game.play();
+                        game = new Game();
                         break;
                     case 3:
 
