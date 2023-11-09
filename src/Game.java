@@ -21,20 +21,6 @@ public class Game {
         this.level = level;
     }
 
-    private void GetGameWord() {
-
-        if (level == 1){
-            gameWord = wm.GetRandomWord(4);
-        }
-        else if (level == 2) {
-            gameWord = wm.GetRandomWord(7);
-        }
-        else if (level == 3){
-            gameWord = wm.GetRandomWord(10);
-
-        }
-
-    }
 
     public void ShowWord(){
         System.out.print("La palabra es: " + gameWord);
@@ -83,7 +69,7 @@ public class Game {
         int option = 0;
         boolean comprobation = true;
         char  value;
-        GetGameWord();
+        wm.GetRandomWord(level);
 
         do{
 

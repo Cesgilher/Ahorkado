@@ -8,8 +8,8 @@ public class WordManager {
 
 
 
-    public void AddWord(String value) {
-        Word word = new Word(value);
+    public void AddWord(String value, int level) {
+        Word word = new Word(value, level);
 
         if (!availableWords.contains(word)) {
             availableWords.add(word);
@@ -19,25 +19,21 @@ public class WordManager {
 
 
     public void DeleteWord(String value) {
-
-        Word word = new Word(value);
-        if (availableWords.contains(word)) {
-            availableWords.remove(word);
-        }
-
+        availableWords.removeIf(word -> word.getValue().equals(value));
     }
 
-    public String GetRandomWord(int lenght) {
+
+    public String GetRandomWord(int level) {
         ArrayList<Word> words = new ArrayList<>();
         for (Word w : availableWords) {
-            if (w.getValue().length() < lenght) {
+            if (w.getLevel() == level) {
                 words.add(w);
             }
         }
         if (!words.isEmpty()) {
             Random random = new Random();
             int randomIndex = random.nextInt(words.size());
-            return String.valueOf(words.get(randomIndex));
+            return words.get(randomIndex).getValue();
         } else {
             return null;
         }
