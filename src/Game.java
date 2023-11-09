@@ -112,7 +112,7 @@ public class Game {
         JPanel panel = new JPanel();
         ventana.add(panel);
 
-        JButton jugarButton = new JButton("Jugar");
+        JButton jugarButton = new JButton(("Jugar") + ("BorderLayout.SOUTH") + BorderLayout.SOUTH);
         JButton nivelButton = new JButton("Elegir Nivel");
 
         panel.add(jugarButton);
