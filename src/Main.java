@@ -3,11 +3,6 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Game game = new Game();
-       /* game.wm.AddWord("taza",1);
-        game.wm.AddWord("reptil",1);
-        game.wm.AddWord("taladro",3);
-        game.wm.AddWord("impresionar",3);
-        game.wm.AddWord("ramo",2);*/
         Scanner sc = new Scanner(System.in);
         int level;
 
