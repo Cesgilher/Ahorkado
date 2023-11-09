@@ -5,6 +5,11 @@ import java.util.Random;
 
 public class WordManager {
     private ArrayList<Word> availableWords = new ArrayList<>();
+    private DbContext dbContext = new DbContext();
+
+    public WordManager(){
+        availableWords = dbContext.GetAllWords();
+    }
 
 
 
