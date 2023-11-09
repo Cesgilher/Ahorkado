@@ -29,11 +29,11 @@ public class Main {
                             "2- normal\n" +
                             "3- dificil");
                     level = sc.nextInt();
-                    game.level = level;
+                    //game.level = level;
 
                     break;
                 case 2:
-
+                    game.mostrarJuego();
                     break;
 
             }
@@ -43,7 +43,7 @@ public class Main {
 
         }
 
-        game.Play();
+        //game.Play();
 
 
 

@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Game {
     String gameWord;
@@ -101,7 +104,38 @@ public class Game {
         }while(option != 2 || attempts != 4);
     }
 
+    public void mostrarJuego(){
+        JFrame ventana = new JFrame("Ahorcado");
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.setSize(500, 250);
 
+        JPanel panel = new JPanel();
+        ventana.add(panel);
+
+        JButton jugarButton = new JButton("Jugar");
+        JButton nivelButton = new JButton("Elegir Nivel");
+
+        panel.add(jugarButton);
+        panel.add(nivelButton);
+
+        jugarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Agrega aquí la lógica para "Jugar"
+                JOptionPane.showMessageDialog(null, "Has seleccionado Jugar");
+            }
+        });
+
+        nivelButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Has seleccionado Elegir Nivel");
+            }
+        });
+
+
+        ventana.setVisible(true);
+    }
 
 
 }
