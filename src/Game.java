@@ -104,6 +104,7 @@ public class Game {
         }while(option != 2 || attempts != 4);
     }
 
+    //swing
     public void mostrarJuego(){
         JFrame ventana = new JFrame("Ahorcado");
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
