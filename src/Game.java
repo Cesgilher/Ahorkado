@@ -41,33 +41,25 @@ public class Game extends JFrame{
         String guess = inputField.getText().toUpperCase();
         if (guess.length() != 1 || !Character.isLetter(guess.charAt(0))) {
             resultLabel.setText("Ingresa una letra válida.");
+            CheckChar();
         } else {
             char letter = guess.charAt(0);
-            if (gameWord.contains(String.valueOf(letter))) {
+            if (guessedChars.contains(letter) | failedChars.contains(letter)){
+                resultLabel.setText("Ya has usado esa letra, ingresa otra.");
+                CheckChar();
+            }
+            else if (gameWord.contains(String.valueOf(letter))) {
                 guessedChars.add(letter);
-                wordLabel.setText(ShowGuessedChars());
-                if (!ShowGuessedChars().contains("_")) {
-                    resultLabel.setText("¡Felicidades! Has ganado.");
-                } else {
-                    resultLabel.setText("¡Letra correcta!");
-                }
+                resultLabel.setText("¡Letra correcta!");
+
             } else {
                 failedChars.add(letter);
                 attempts++;
-                if (attempts >= 6) {
-                    resultLabel.setText("Has perdido. La palabra era: " + gameWord);
-                } else {
-                    resultLabel.setText("¡Letra incorrecta! Intentos restantes: " + (4 - attempts));
-                }
+                resultLabel.setText("¡Letra incorrecta! Intentos restantes: " + (4 - attempts));
             }
         }
         inputField.setText("");
-        /*if (gameWord.contains(String.valueOf(value))){
-            guessedChars.add(value);
-        }else {
-            failedChars.add(value);
-            attempts++;
-        }*/
+
     }
 
     public String ShowGuessedChars(){
