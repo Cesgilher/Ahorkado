@@ -5,14 +5,17 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Game {
+public class Game extends JFrame{
     String gameWord;
     ArrayList<Character> guessedChars = new ArrayList<>();
     ArrayList<Character> failedChars = new ArrayList<>();
     Scanner sc = new Scanner(System.in);
     WordManager wm = new WordManager();
-    int level;
-    int attempts;
+    private int level;
+    private int attempts;
+    private JTextField inputField;
+    private JLabel wordLabel;
+    private JLabel resultLabel;
 
 
 
@@ -33,17 +36,41 @@ public class Game {
         System.out.println();*/
     }
 
-    public void CheckChar(char value) {
+    public void CheckChar() {
 
-        if (gameWord.contains(String.valueOf(value))){
+        String guess = inputField.getText().toUpperCase();
+        if (guess.length() != 1 || !Character.isLetter(guess.charAt(0))) {
+            resultLabel.setText("Ingresa una letra válida.");
+        } else {
+            char letter = guess.charAt(0);
+            if (gameWord.contains(String.valueOf(letter))) {
+                guessedChars.add(letter);
+                wordLabel.setText(ShowGuessedChars());
+                if (!ShowGuessedChars().contains("_")) {
+                    resultLabel.setText("¡Felicidades! Has ganado.");
+                } else {
+                    resultLabel.setText("¡Letra correcta!");
+                }
+            } else {
+                failedChars.add(letter);
+                attempts++;
+                if (attempts >= 6) {
+                    resultLabel.setText("Has perdido. La palabra era: " + gameWord);
+                } else {
+                    resultLabel.setText("¡Letra incorrecta! Intentos restantes: " + (4 - attempts));
+                }
+            }
+        }
+        inputField.setText("");
+        /*if (gameWord.contains(String.valueOf(value))){
             guessedChars.add(value);
         }else {
             failedChars.add(value);
             attempts++;
-        }
+        }*/
     }
 
-    public void ShowGuessedChars(){
+    public String ShowGuessedChars(){
         String word = "";
         for (int i = 0; i < gameWord.length(); i++){
             char c = gameWord.charAt(i);
@@ -51,10 +78,10 @@ public class Game {
             if (guessedChars.contains(c)){
                 word = word.concat(String.valueOf(c));
             }else {
-                word = word.concat("_");
+                word = word.concat("_ ");
             }
         }
-        System.out.println(word);
+        return word;
 
     }
 
@@ -64,7 +91,7 @@ public class Game {
         System.out.println("Has perdido");
     }
 
-    public void Play() {
+    /*public void Play() {
         level++;
         attempts = 0;
         guessedChars.clear();
@@ -102,10 +129,10 @@ public class Game {
             }
 
         }while(option != 2 || attempts != 4);
-    }
+    }*/
 
     //swing
-    public void mostrarJuego(){
+   /* public void mostrarJuego(){
         JFrame ventana = new JFrame("Ahorcado");
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setSize(500, 250);
@@ -136,7 +163,41 @@ public class Game {
 
 
         ventana.setVisible(true);
+    }*/
+
+
+    public void mostrarJuego() {
+        setTitle("Juego del Ahorcado");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(400, 200);
+        setLayout(new GridLayout(4, 1));
+
+        initGame();
     }
 
+    private void initGame() {
+        gameWord = wm.GetRandomWord(level);
+        attempts = 0;
+        guessedChars.clear();
+        failedChars.clear();
+
+        wordLabel = new JLabel(ShowGuessedChars());
+        add(wordLabel);
+
+        inputField = new JTextField();
+        add(inputField);
+
+        JButton guessButton = new JButton("Adivinar");
+        guessButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CheckChar();
+            }
+        });
+        add(guessButton);
+
+        resultLabel = new JLabel("");
+        add(resultLabel);
+    }
 
 }

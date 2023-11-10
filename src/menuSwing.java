@@ -61,7 +61,7 @@ public class menuSwing extends JFrame {
         return words[random.nextInt(words.length)];
     }
 
-    //mostrar los huecos que tiene la palabra
+    //donete
     private String getMaskedWord() {
         StringBuilder maskedWord = new StringBuilder();
         for (char c : gameWord.toCharArray()) {
@@ -73,7 +73,7 @@ public class menuSwing extends JFrame {
         }
         return maskedWord.toString();
     }
-    //comprobacion de letra
+    //donete
     private void checkGuess() {
         String guess = inputField.getText().toUpperCase();
         if (guess.length() != 1 || !Character.isLetter(guess.charAt(0))) {
