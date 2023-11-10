@@ -76,6 +76,15 @@ public class Game extends JFrame{
         return word;
 
     }
+    public void gameStatus(int attempts){
+
+        if (attempts==4){
+            resultLabel.setText("Has perdido, la palabra era: " + gameWord);
+
+        } else{
+            resultLabel.setText("¡Felicidades! Has ganado.");
+        }
+    }
 
 
 
@@ -167,7 +176,7 @@ public class Game extends JFrame{
         initGame();
     }
 
-    private void initGame() {
+    private void initRound() { //Hay que añadir un menu con las diferentes opciones del juego( adivinar palabra y rendirse)
         gameWord = wm.GetRandomWord(level);
         attempts = 0;
         guessedChars.clear();
@@ -190,6 +199,10 @@ public class Game extends JFrame{
 
         resultLabel = new JLabel("");
         add(resultLabel);
+
+        gameStatus(attempts);
+
+        //cuando se acabe la ronda ( wm.DeleteWord(gameWord))
     }
 
 }
