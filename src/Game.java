@@ -173,7 +173,7 @@ public class Game extends JFrame{
         setSize(400, 200);
         setLayout(new GridLayout(4, 1));
 
-        initGame();
+        initRound();
     }
 
     private void initRound() { //Hay que añadir un menu con las diferentes opciones del juego( adivinar palabra y rendirse)
