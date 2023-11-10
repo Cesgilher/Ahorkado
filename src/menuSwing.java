@@ -100,4 +100,16 @@ public class menuSwing extends JFrame {
         }
         inputField.setText("");
     }
+
+    public void gameStatus(){
+        boolean actualStatus = false;
+        boolean winStatus = false;
+
+        if (actualStatus){
+            resultLabel.setText("Has perdido, la palabra era: " + gameWord);
+        } else if (actualStatus == false && winStatus == true) {
+            resultLabel.setText("¡Felicidades! Has ganado.");
+        }
+    }
+
 }
