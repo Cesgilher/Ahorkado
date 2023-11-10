@@ -101,15 +101,22 @@ public class menuSwing extends JFrame {
         inputField.setText("");
     }
 
-    public void gameStatus(){
+    public boolean gameStatus(boolean comprobation){
         boolean actualStatus = false;
         boolean winStatus = false;
+        boolean end = false;
 
-        if (actualStatus){
+        if (comprobation == true){
+            actualStatus = true;
+        }
+
+        if (actualStatus == true){
             resultLabel.setText("Has perdido, la palabra era: " + gameWord);
+            end = true;
         } else if (actualStatus == false && winStatus == true) {
             resultLabel.setText("¡Felicidades! Has ganado.");
         }
+        return end;
     }
 
 }
