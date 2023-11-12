@@ -19,7 +19,6 @@ public class Game extends JFrame{
 
 
 
-
     public Game(){
         this.level = 0;
     }
@@ -30,10 +29,6 @@ public class Game extends JFrame{
 
     public void ShowWord(){
         System.out.print("La palabra es: " + gameWord);
-        /*for (char character : gameWord) {
-            System.out.print(character);
-        }
-        System.out.println();*/
     }
 
     public void CheckChar() {
@@ -61,7 +56,6 @@ public class Game extends JFrame{
         inputField.setText("");
 
     }
-
     public String ShowGuessedChars(){
         String word = "";
         for (int i = 0; i < gameWord.length(); i++){
@@ -85,88 +79,6 @@ public class Game extends JFrame{
             resultLabel.setText("¡Felicidades! Has ganado.");
         }
     }
-
-
-
-    public void gameOver(){
-        System.out.println("Has perdido");
-    }
-
-    /*public void Play() {
-        level++;
-        attempts = 0;
-        guessedChars.clear();
-        failedChars.clear();
-        int option = 0;
-        boolean comprobation = true;
-        char  value;
-        wm.GetRandomWord(level);
-
-        do{
-
-            System.out.println("1- Introducir letra\n" +
-                    "2- Rendirse");
-
-            try {
-                option = sc.nextInt();
-
-                switch (option){
-                    case 1:
-                        System.out.println("Introduzca una letra");
-                        value = sc.next().charAt(0);
-                        CheckChar(value);
-                        ShowGuessedChars();
-
-                        break;
-                    case 2:
-                        gameOver();
-                        ShowWord();
-                        break;
-                }
-
-            }catch (java.util.InputMismatchException e){
-                System.out.println("Error: Ingresa un número válido.");
-
-            }
-
-        }while(option != 2 || attempts != 4);
-    }*/
-
-    //swing
-   /* public void mostrarJuego(){
-        JFrame ventana = new JFrame("Ahorcado");
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventana.setSize(500, 250);
-
-        JPanel panel = new JPanel();
-        ventana.add(panel);
-
-        JButton jugarButton = new JButton(("Jugar") + ("BorderLayout.SOUTH") + BorderLayout.SOUTH);
-        JButton nivelButton = new JButton("Elegir Nivel");
-
-        panel.add(jugarButton);
-        panel.add(nivelButton);
-
-        jugarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Agrega aquí la lógica para "Jugar"
-                JOptionPane.showMessageDialog(null, "Has seleccionado Jugar");
-            }
-        });
-
-        nivelButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Has seleccionado Elegir Nivel");
-            }
-        });
-
-
-        ventana.setVisible(true);
-    }*/
-
-
     public void mostrarJuego() {
         setTitle("Juego del Ahorcado");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -175,7 +87,6 @@ public class Game extends JFrame{
 
         initRound();
     }
-
     private void initRound() { //Hay que añadir un menu con las diferentes opciones del juego( adivinar palabra y rendirse)
         gameWord = wm.GetRandomWord(level);
         attempts = 0;
@@ -189,10 +100,20 @@ public class Game extends JFrame{
         add(inputField);
 
         JButton guessButton = new JButton("Adivinar");
+        JButton surrenderButton = new JButton("Rendirte");
+
+        //los guessButtons hacen la funcion del menu de opciones
         guessButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 CheckChar();
+            }
+        });
+        surrenderButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                attempts = 4;
+                gameStatus(attempts);
             }
         });
         add(guessButton);
@@ -203,6 +124,7 @@ public class Game extends JFrame{
         gameStatus(attempts);
 
         //cuando se acabe la ronda ( wm.DeleteWord(gameWord))
+        wm.DeleteWord(gameWord);
     }
 
 }
