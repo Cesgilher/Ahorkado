@@ -29,14 +29,14 @@ public class Game extends JFrame{
 
 
     public void CheckChar() {
-        String guess = inputField.getText().toUpperCase(); // Convert the input to uppercase
+        String guess = inputField.getText().toUpperCase();
 
         if (guess.length() != 1 || !Character.isLetter(guess.charAt(0))) {
             resultLabel.setText("Ingresa una letra válida.");
             CheckChar();
         } else {
             char letter = guess.charAt(0);
-            letter = Character.toUpperCase(letter); // Ensure the comparison is case-insensitive
+            letter = Character.toUpperCase(letter);
 
             if (guessedChars.contains(letter) || failedChars.contains(letter)) {
                 resultLabel.setText("Ya has usado esa letra, ingresa otra.");
@@ -79,13 +79,12 @@ public class Game extends JFrame{
         if (attempts == 4) {
             return true;
         } else {
-            // Check if all letters of the word are guessed
             boolean allLettersGuessed = true;
             for (int i = 0; i < gameWord.length(); i++) {
                 char c = gameWord.charAt(i);
                 if (!guessedChars.contains(c)) {
                     allLettersGuessed = false;
-                    break; // Break out of the loop as soon as a non-guessed letter is found
+                    break;
                 }
             }
             return allLettersGuessed;
@@ -108,7 +107,7 @@ public class Game extends JFrame{
         setVisible(true);
 
     }
-    private void InitRound() { //Hay que añadir un menu con las diferentes opciones del juego( adivinar palabra y rendirse)
+    private void InitRound() {
         level++;
         gameWord = wm.GetRandomWord(level);
         attempts = 0;
@@ -123,9 +122,6 @@ public class Game extends JFrame{
         inputField = new JTextField();
         add(inputField);
 
-
-
-        //los guessButtons hacen la funcion del menu de opciones
         guessButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
